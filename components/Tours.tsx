@@ -1,80 +1,79 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { TOURS } from '../constants.ts';
+import { Clock, CheckCircle, MapPin, ArrowUpRight } from 'lucide-react';
+import { TOURS } from '../constants';
 
 const Tours: React.FC = () => {
   return (
-    <section id="tours" className="py-24 bg-brand-dark relative">
-       
-       {/* Header Container */}
-       <div className="container mx-auto px-6 mb-16 relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-white/10">
-             <div className="max-w-2xl">
-                <span className="text-action font-bold text-sm tracking-widest uppercase mb-2 block">
-                  Catálogo de Experiencias
-                </span>
-                <h2 className="text-4xl md:text-5xl font-serif font-bold text-white">
-                  Elige tu Aventura
-                </h2>
-             </div>
-             <div className="flex items-center gap-4">
-                <span className="text-slate-400 text-sm hidden md:block">Mostrando 4 rutas destacadas</span>
-                <a href="#contact" className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full text-sm font-bold transition-colors">
-                  Ver Todas
-                </a>
-             </div>
-          </div>
+    <section id="tours" className="py-24 bg-slate-900 text-white relative">
+       {/* Decorative Background Text */}
+       <div className="absolute top-20 left-0 w-full overflow-hidden pointer-events-none opacity-[0.03]">
+            <h2 className="text-[15rem] font-bold text-white whitespace-nowrap leading-none font-serif">WILDLIFE</h2>
        </div>
 
-       {/* Cards Grid */}
-       <div className="container mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {TOURS.map((tour) => (
-              <article key={tour.id} className="group bg-surface-dark border border-white/5 rounded-2xl overflow-hidden flex flex-col hover:shadow-2xl hover:shadow-action/10 transition-all duration-300">
-                
-                {/* Image Container */}
-                <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={tour.image} 
-                    alt={tour.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
-                  />
-                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                     <span className="text-white text-xs font-bold tracking-wide">{tour.duration}</span>
-                  </div>
-                </div>
-
-                {/* Content Body */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-serif font-bold text-white mb-3 leading-snug group-hover:text-action transition-colors">
-                    {tour.title}
-                  </h3>
-                  
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3 flex-1">
-                    {tour.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {tour.highlights.slice(0, 2).map((highlight, idx) => (
-                      <span key={idx} className="text-[10px] uppercase tracking-wider text-slate-300 bg-white/5 px-2 py-1 rounded-md">
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                     <span className="text-lg font-bold text-white">{tour.price}</span>
-                     <button className="w-10 h-10 rounded-full bg-white text-brand-dark flex items-center justify-center group-hover:bg-action group-hover:text-white transition-colors">
-                        <ArrowUpRight className="w-5 h-5" />
-                     </button>
-                  </div>
-                </div>
-              </article>
-            ))}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="max-w-2xl">
+            <span className="text-accent font-bold uppercase tracking-widest text-sm mb-2 block">Nuestras Expediciones</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Diseñadas para la Aventura</h2>
+            <p className="text-slate-400 text-lg">
+              Rutas seleccionadas meticulosamente para mostrarte la majestuosidad cruda de la Patagonia. Sin filtros.
+            </p>
           </div>
-       </div>
+          <a href="#contact" className="hidden md:flex items-center gap-2 text-white border-b border-secondary pb-1 hover:text-secondary transition-colors">
+            Ver calendario completo <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {TOURS.map((tour) => (
+            <div key={tour.id} className="group relative bg-slate-800 rounded-none overflow-hidden hover:-translate-y-2 transition-all duration-500 border-b-4 border-transparent hover:border-secondary shadow-xl shadow-black/30">
+              {/* Image */}
+              <div className="relative h-64 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60 z-10 group-hover:opacity-30 transition-opacity" />
+                <img 
+                  src={tour.image} 
+                  alt={tour.title} 
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0"
+                />
+                <div className="absolute bottom-4 left-4 z-20">
+                   <div className="bg-secondary/90 text-white text-xs font-bold px-2 py-1 inline-block mb-2">
+                    {tour.duration}
+                   </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="font-serif text-xl font-bold text-white mb-3 group-hover:text-secondary transition-colors">
+                  {tour.title}
+                </h3>
+                <p className="text-slate-400 text-sm mb-6 line-clamp-3 border-l border-slate-600 pl-3">
+                  {tour.description}
+                </p>
+
+                <div className="space-y-3 mb-8">
+                  {tour.highlights.slice(0, 3).map((highlight, idx) => (
+                    <div key={idx} className="flex items-center gap-3 text-xs text-slate-300">
+                      <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                      {highlight}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                  <div className="flex flex-col">
+                    <span className="text-[10px] uppercase tracking-wider text-slate-500">Inversión</span>
+                    <span className="text-lg font-bold text-white">{tour.price}</span>
+                  </div>
+                  <button className="bg-white text-slate-900 rounded-full p-2 hover:bg-secondary hover:text-white transition-colors">
+                    <ArrowUpRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

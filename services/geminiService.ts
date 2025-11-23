@@ -1,54 +1,30 @@
 import { GoogleGenAI } from "@google/genai";
-import { TOURS, CONTACT_INFO } from '../constants.ts';
+import { TOURS, CONTACT_INFO } from '../constants';
 
-// Inicialización perezosa para evitar fallos si faltan variables de entorno
-let ai: GoogleGenAI | null = null;
-
-const getAiClient = () => {
-  if (ai) return ai;
-  
-  const apiKey = process.env.API_KEY || '';
-  
-  if (apiKey) {
-      ai = new GoogleGenAI({ apiKey });
-  }
-  return ai;
-};
+// Initialize the client
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generateChatResponse = async (userMessage: string, history: string[]) => {
-  const apiKey = process.env.API_KEY;
-  
-  if (!apiKey || apiKey === 'undefined' || apiKey === '') {
-    return new Promise<string>((resolve) => {
-        setTimeout(() => {
-            resolve("⚠️ Modo Demo: Soy el asistente de Angelmó Tours. Necesito una API Key para funcionar completamente, pero puedo contarte que ofrecemos navegaciones por Isla Tenglo y tours a Petrohué. 🌧️🚢");
-        }, 1000);
-    });
-  }
-
   try {
-    const client = getAiClient();
-    if (!client) throw new Error("Client initialization failed");
-
     const context = `
-      Eres el asistente virtual experto de "Angelmó Tours", una agencia de turismo ubicada en la famosa zona de Angelmó, Puerto Montt, Chile.
+      Eres el asistente virtual experto de "PatagoniaCamper", una agencia de turismo y arriendo de campers en Puerto Natales y Torres del Paine, Chile.
       
-      Tu objetivo es ayudar a los turistas a planificar sus paseos, vender navegaciones por la Isla Tenglo, tours a Saltos del Petrohué y Volcán Osorno.
+      Tu objetivo es ayudar a los aventureros a planificar su viaje a la Patagonia, recomendar trekkings (como la Base Torres o la W), y explicar el arriendo de campers.
       
       INFORMACIÓN DISPONIBLE:
       Servicios: ${JSON.stringify(TOURS)}
       Contacto: ${JSON.stringify(CONTACT_INFO)}
       
       REGLAS:
-      1. Responde de manera amable, sureña y acogedora.
-      2. Usa emojis relacionados con el mar, lluvia, barcos y naturaleza 🌧️🚢🌲🌋.
-      3. Destaca la gastronomía de Angelmó si preguntan (mariscos, curanto).
+      1. Responde de manera aventurera, útil y motivadora.
+      2. Usa emojis relacionados con frío, montaña y camping 🏔️❄️🚐🔥.
+      3. Ten en cuenta que el clima en Patagonia es impredecible, sugiérelo en tus respuestas.
       4. Si te preguntan precios, dálos en CLP.
-      5. Si no sabes la respuesta, sugiere contactar por WhatsApp o ir al local en Angelmó.
+      5. Si no sabes la respuesta, sugiere contactar por WhatsApp.
       6. Mantén las respuestas bajo 100 palabras.
     `;
 
-    const response = await client.models.generateContent({
+    const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: userMessage,
       config: {
@@ -57,9 +33,9 @@ export const generateChatResponse = async (userMessage: string, history: string[
       }
     });
 
-    return response.text || "La señal bajó por la lluvia. ¿Me lo repites?";
+    return response.text || "El viento patagónico interfirió con mi señal. ¿Podrías repetir eso?";
   } catch (error) {
     console.error("Error calling Gemini API:", error);
-    return "Lo siento, hubo un problema conectando con el servicio. Por favor verifica tu conexión.";
+    return "Lo siento, no puedo conectar con el servidor base en este momento. Por favor llama a nuestro número de contacto.";
   }
 };

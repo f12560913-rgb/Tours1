@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from './components/Navbar.tsx';
-import Hero from './components/Hero.tsx';
-import Tours from './components/Tours.tsx';
-import About from './components/About.tsx';
-import Contact from './components/Contact.tsx';
-import ChatWidget from './components/ChatWidget.tsx';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Tours from './components/Tours';
+import About from './components/About';
+import Contact from './components/Contact';
+import ChatWidget from './components/ChatWidget';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +14,7 @@ const App: React.FC = () => {
         <Hero />
         <About />
         <Tours />
+        {/* Testimonials can be added here */}
         <Contact />
       </main>
       

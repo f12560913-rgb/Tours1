@@ -1,98 +1,93 @@
 import React from 'react';
-import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
-import { CONTACT_INFO } from '../constants.ts';
+import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { CONTACT_INFO } from '../constants';
 
 const Contact: React.FC = () => {
   return (
-    <section id="contact" className="py-24 bg-surface-light">
-      <div className="container mx-auto px-6">
-        <div className="bg-brand-dark rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+    <section id="contact" className="py-20 bg-primary text-white relative overflow-hidden">
+      {/* Decorator */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-700/20 skew-x-12 transform translate-x-1/4"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-12">
           
-          {/* Info Panel (Dark) */}
-          <div className="w-full lg:w-5/12 p-10 md:p-16 text-white flex flex-col justify-between relative overflow-hidden">
-             {/* Decorator */}
-             <div className="absolute top-0 right-0 w-64 h-64 bg-action opacity-10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-             
-             <div>
-                <h3 className="font-serif text-3xl md:text-4xl font-bold mb-6">Hablemos</h3>
-                <p className="text-slate-300 mb-12 leading-relaxed">
-                  ¿Listo para el fin del mundo? Escríbenos para verificar disponibilidad de campers y cupos en expediciones.
-                </p>
+          {/* Contact Info */}
+          <div className="w-full lg:w-5/12">
+            <h2 className="font-serif text-4xl font-bold mb-6">Planifica tu Expedición</h2>
+            <p className="text-slate-300 text-lg mb-10">
+              Los cupos para campings y refugios en Torres del Paine son limitados. Contáctanos con anticipación para asegurar tu aventura en el fin del mundo.
+            </p>
 
-                <div className="space-y-8">
-                  <div className="flex gap-4">
-                     <Phone className="w-6 h-6 text-action shrink-0" />
-                     <div>
-                        <p className="text-sm text-slate-400 uppercase tracking-wider mb-1">Llámanos</p>
-                        <p className="text-lg font-semibold">{CONTACT_INFO.phone}</p>
-                     </div>
-                  </div>
-                  <div className="flex gap-4">
-                     <Mail className="w-6 h-6 text-action shrink-0" />
-                     <div>
-                        <p className="text-sm text-slate-400 uppercase tracking-wider mb-1">Email</p>
-                        <p className="text-lg font-semibold">{CONTACT_INFO.email}</p>
-                     </div>
-                  </div>
-                  <div className="flex gap-4">
-                     <MapPin className="w-6 h-6 text-action shrink-0" />
-                     <div>
-                        <p className="text-sm text-slate-400 uppercase tracking-wider mb-1">Ubicación</p>
-                        <p className="text-lg font-semibold">{CONTACT_INFO.address}</p>
-                     </div>
-                  </div>
+            <div className="space-y-8">
+              <div className="flex items-start gap-4">
+                <div className="bg-secondary p-4 rounded-full text-white">
+                  <Phone className="w-6 h-6" />
                 </div>
-             </div>
+                <div>
+                  <h4 className="text-lg font-bold mb-1">Central de Reservas</h4>
+                  <p className="text-slate-400">{CONTACT_INFO.phone}</p>
+                  <p className="text-sm text-slate-500">Atención 24/7 en temporada alta</p>
+                </div>
+              </div>
 
-             <div className="mt-12">
-               <p className="text-xs text-slate-500">
-                 * Respondemos en menos de 24 horas hábiles.
-               </p>
-             </div>
+              <div className="flex items-start gap-4">
+                <div className="bg-accent p-4 rounded-full text-white">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold mb-1">Email</h4>
+                  <p className="text-slate-400">{CONTACT_INFO.email}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="bg-slate-600 p-4 rounded-full text-white">
+                  <MapPin className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold mb-1">Base de Operaciones</h4>
+                  <p className="text-slate-400">{CONTACT_INFO.address}</p>
+                  <p className="text-sm text-slate-500">Puerto Natales, Chile</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Form Panel (White) */}
-          <div className="w-full lg:w-7/12 bg-white p-10 md:p-16">
-            <form className="space-y-6">
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-2">
-                     <label className="text-xs font-bold uppercase text-slate-500 tracking-wider">Nombre</label>
-                     <input 
-                       type="text" 
-                       className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent transition-all placeholder:text-slate-400"
-                       placeholder="Tu nombre"
-                     />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                     <label className="text-xs font-bold uppercase text-slate-500 tracking-wider">Apellido</label>
-                     <input 
-                       type="text" 
-                       className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent transition-all placeholder:text-slate-400"
-                       placeholder="Tu apellido"
-                     />
-                  </div>
-               </div>
+          {/* Form */}
+          <div className="w-full lg:w-7/12">
+            <form className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl text-gray-800">
+              <h3 className="text-2xl font-bold text-primary mb-6">Solicitud de Cotización</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Nombre Completo</label>
+                  <input type="text" className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="Tu nombre" />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                  <input type="email" className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all" placeholder="tu@email.com" />
+                </div>
+              </div>
 
-               <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold uppercase text-slate-500 tracking-wider">Email</label>
-                  <input 
-                    type="email" 
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent transition-all placeholder:text-slate-400"
-                    placeholder="ejemplo@correo.com"
-                  />
-               </div>
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Interés Principal</label>
+                <select className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all text-gray-600">
+                  <option>Selecciona una opción...</option>
+                  <option>Arriendo de Camper</option>
+                  <option>Trekking Base Torres</option>
+                  <option>Circuito W / O</option>
+                  <option>Navegación Glaciares</option>
+                </select>
+              </div>
 
-               <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold uppercase text-slate-500 tracking-wider">Mensaje</label>
-                  <textarea 
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-action focus:border-transparent transition-all placeholder:text-slate-400"
-                    placeholder="Cuéntanos sobre tu viaje ideal..."
-                  ></textarea>
-               </div>
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Detalles del Viaje</label>
+                <textarea className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all h-32 resize-none" placeholder="Número de pasajeros, fechas tentativas y requerimientos especiales..."></textarea>
+              </div>
 
-               <button type="button" className="w-full bg-brand-dark hover:bg-slate-800 text-white font-bold py-4 rounded-lg transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
-                  Enviar Solicitud <ArrowRight className="w-5 h-5" />
-               </button>
+              <button type="button" className="w-full bg-primary hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                <Send className="w-5 h-5" /> Enviar Solicitud
+              </button>
             </form>
           </div>
 
