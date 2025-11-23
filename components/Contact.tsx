@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
-import { CONTACT_INFO } from '../constants';
+import { CONTACT_INFO } from '../constants.ts';
 
 const Contact: React.FC = () => {
   return (

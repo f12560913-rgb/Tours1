@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PatagoniaCamper - Torres del Paine & Aventuras</title>
+    <title>Angelmó Tours - Puerto Montt & Navegación</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
       // EVITAR PANTALLA GRIS: Polyfill para process.env en el navegador
       window.process = window.process || {
         env: {
-          API_KEY: '' // Si tienes una key, iría aquí, pero dejarlo vacío permite ver el diseño sin errores.
+          API_KEY: '' 
         }
       };
 
@@ -24,33 +24,27 @@
               serif: ['Playfair Display', 'serif'],
             },
             colors: {
-              // Semantic Color Palette for Figma
               brand: {
-                DEFAULT: '#0f172a', // Slate 900 (Primary Background)
-                light: '#334155',   // Slate 700
-                dark: '#020617',    // Slate 950
+                DEFAULT: '#1e3a8a', // Azul Marino Profundo
+                light: '#3b82f6',   // Azul Brillante
+                dark: '#172554',    // Azul Noche
               },
               action: {
-                DEFAULT: '#06b6d4', // Cyan 500 (Primary Action)
-                hover: '#0891b2',   // Cyan 600
-                subtle: 'rgba(6, 182, 212, 0.1)',
+                DEFAULT: '#ea580c', // Naranja Atardecer (Angelmó)
+                hover: '#c2410c',   // Naranja Quemado
+                subtle: 'rgba(234, 88, 12, 0.1)',
               },
               accent: {
-                DEFAULT: '#f59e0b', // Amber 500 (Highlights)
+                DEFAULT: '#facc15', // Amarillo Sol
               },
               surface: {
                 white: '#ffffff',
-                light: '#f8fafc',   // Slate 50
-                dark: '#1e293b',    // Slate 800
+                light: '#f0f9ff',   // Azul Cielo Muy Claro
+                dark: '#0f172a',    // Slate 900
               }
-            },
-            boxShadow: {
-              'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-              'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
             },
             animation: {
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-              'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
               fadeInUp: {
@@ -64,40 +58,28 @@
     </script>
     <style>
       html { scroll-behavior: smooth; }
-      /* Hide scrollbar for cleaner design feel */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0f172a; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #334155; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #06b6d4; 
-      }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #172554; }
+      ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #ea580c; }
     </style>
-  <script type="importmap">
+    <!-- Import map para desarrollo local sin build, pero Vite lo ignorará en producción -->
+    <script type="importmap">
 {
   "imports": {
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
   }
 }
 </script>
-</head>
+  </head>
   <body>
-    <div id="root">
-        <!-- Loader visual para que sepas si está cargando o fallando -->
-        <div style="height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; background-color: #0f172a; color: white; font-family: sans-serif;">
-            Cargando PatagoniaCamper...
-        </div>
-    </div>
+    <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { TOURS } from '../constants';
+import { TOURS } from '../constants.ts';
 
 const Tours: React.FC = () => {
   return (

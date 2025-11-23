@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Loader2 } from 'lucide-react';
-import { generateChatResponse } from '../services/geminiService';
-import { Message } from '../types';
+import { generateChatResponse } from '../services/geminiService.ts';
+import { Message } from '../types.ts';
 
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +55,7 @@ const ChatWidget: React.FC = () => {
       {isOpen && (
         <div className="bg-white rounded-2xl shadow-2xl w-80 md:w-96 flex flex-col border border-gray-200 overflow-hidden transition-all duration-300 h-[500px]">
           {/* Header */}
-          <div className="bg-primary p-4 flex justify-between items-center text-white">
+          <div className="bg-brand-dark p-4 flex justify-between items-center text-white">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
               <h3 className="font-bold">Patagonia AI</h3>
@@ -72,7 +72,7 @@ const ChatWidget: React.FC = () => {
                 key={idx}
                 className={`max-w-[85%] p-3 rounded-2xl text-sm ${
                   msg.role === 'user'
-                    ? 'bg-secondary text-white self-end rounded-br-none'
+                    ? 'bg-action text-white self-end rounded-br-none'
                     : 'bg-white border border-gray-200 text-gray-800 self-start rounded-bl-none shadow-sm'
                 }`}
               >
@@ -95,12 +95,12 @@ const ChatWidget: React.FC = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
               placeholder="Pregunta por trekkings..."
-              className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:border-secondary text-sm"
+              className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:border-action text-sm"
             />
             <button
               onClick={handleSend}
               disabled={isLoading}
-              className="bg-primary text-white p-2 rounded-full hover:bg-slate-800 disabled:opacity-50"
+              className="bg-brand-dark text-white p-2 rounded-full hover:bg-slate-800 disabled:opacity-50"
             >
               <Send className="w-5 h-5" />
             </button>

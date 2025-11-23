@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mountain, Compass } from 'lucide-react';
-import { CONTACT_INFO } from '../constants';
+import { Menu, X, Phone, Anchor, Compass } from 'lucide-react';
+import { CONTACT_INFO } from '../constants.ts';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,8 +15,8 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Expediciones', href: '#tours' },
-    { name: 'Filosofía', href: '#about' },
+    { name: 'Tours', href: '#tours' },
+    { name: 'Nosotros', href: '#about' },
     { name: 'Contacto', href: '#contact' },
   ];
 
@@ -26,18 +26,18 @@ const Navbar: React.FC = () => {
         isScrolled ? 'py-2' : 'py-6'
       }`}
     >
-      <div className={`container mx-auto px-4 transition-all duration-500 ${isScrolled ? 'max-w-5xl' : ''}`}>
+      <div className={`container mx-auto px-4 transition-all duration-500 ${isScrolled ? 'max-w-6xl' : ''}`}>
         <div className={`flex justify-between items-center rounded-2xl px-6 py-3 backdrop-blur-md border border-white/10 transition-all duration-500 ${
           isScrolled 
-            ? 'bg-slate-900/90 shadow-2xl shadow-black/20' 
+            ? 'bg-brand-dark/90 shadow-2xl shadow-black/20' 
             : 'bg-black/30'
         }`}>
           {/* Logo */}
           <a href="#" className="font-serif text-xl md:text-2xl font-bold tracking-tighter flex items-center gap-2 text-white group">
-            <span className="bg-white text-slate-900 w-8 h-8 flex items-center justify-center rounded-lg group-hover:bg-secondary group-hover:text-white transition-colors">
-              <Mountain className="w-5 h-5" />
+            <span className="bg-action text-white w-8 h-8 flex items-center justify-center rounded-lg group-hover:bg-white group-hover:text-action transition-colors shadow-lg shadow-action/50">
+              <Anchor className="w-5 h-5" />
             </span>
-            PatagoniaCamper
+            Angelmó Tours
           </a>
 
           {/* Desktop Nav */}
@@ -49,13 +49,13 @@ const Navbar: React.FC = () => {
                 className="text-sm font-medium uppercase tracking-widest text-slate-300 hover:text-white transition-colors relative group"
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-action transition-all group-hover:w-full"></span>
               </a>
             ))}
             <div className="h-4 w-px bg-white/20"></div>
             <a
               href={`tel:${CONTACT_INFO.phone}`}
-              className="text-white text-sm font-bold hover:text-secondary transition-colors flex items-center gap-2"
+              className="text-white text-sm font-bold hover:text-action transition-colors flex items-center gap-2"
             >
               <Phone className="w-4 h-4" />
               {CONTACT_INFO.phone}
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-20 left-4 right-4 bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 p-6 flex flex-col gap-4 animate-in slide-in-from-top-5 z-50">
+        <div className="md:hidden absolute top-20 left-4 right-4 bg-brand-dark/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 p-6 flex flex-col gap-4 animate-in slide-in-from-top-5 z-50">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -88,9 +88,9 @@ const Navbar: React.FC = () => {
           <a
             href="#contact"
             onClick={() => setIsMobileMenuOpen(false)}
-             className="bg-secondary text-white text-center py-3 rounded-lg font-bold mt-2 shadow-lg shadow-cyan-900/20"
+             className="bg-action text-white text-center py-3 rounded-lg font-bold mt-2 shadow-lg shadow-orange-900/20"
           >
-            Planificar Aventura
+            Reservar Ahora
           </a>
         </div>
       )}
