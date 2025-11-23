@@ -9,6 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script>
+      // EVITAR PANTALLA GRIS: Polyfill para process.env en el navegador
+      window.process = window.process || {
+        env: {
+          API_KEY: '' // Si tienes una key, iría aquí, pero dejarlo vacío permite ver el diseño sin errores.
+        }
+      };
+
       tailwind.config = {
         theme: {
           extend: {
