@@ -1,10 +1,23 @@
 import { GoogleGenAI } from "@google/genai";
 import { TOURS, CONTACT_INFO } from '../constants';
 
-// Initialize the client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Initialize the client safely
+const apiKey = process.env.API_KEY;
+let ai: GoogleGenAI | null = null;
+
+if (apiKey) {
+  try {
+    ai = new GoogleGenAI({ apiKey: apiKey });
+  } catch (error) {
+    console.error("Error initializing Gemini API:", error);
+  }
+}
 
 export const generateChatResponse = async (userMessage: string, history: string[]) => {
+  if (!ai) {
+    return "⚠️ El sistema de chat no está configurado correctamente (Falta API Key). Por favor contacta a administración.";
+  }
+
   try {
     const context = `
       Eres el asistente virtual experto de "PatagoniaCamper", una agencia de turismo y arriendo de campers en Puerto Natales y Torres del Paine, Chile.
