@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mountain, Compass } from 'lucide-react';
+import { X, Phone, Mountain, Compass } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
 const Navbar: React.FC = () => {

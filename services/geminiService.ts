@@ -13,7 +13,7 @@ if (apiKey) {
   }
 }
 
-export const generateChatResponse = async (userMessage: string, history: string[]) => {
+export const generateChatResponse = async (userMessage: string, _history: string[]) => {
   if (!ai) {
     return "⚠️ El sistema de chat no está configurado correctamente (Falta API Key). Por favor contacta a administración.";
   }

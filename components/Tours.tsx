@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, CheckCircle, MapPin, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { TOURS } from '../constants';
 
 const Tours: React.FC = () => {
